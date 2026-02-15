@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preemptive Movement Hub • Análisis Estratégico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0b0f1a;
+            --bg-secondary: #161e2e;
+            --bg-card: #1e293b;
+            --accent-primary: #FF2448;
+            --accent-secondary: #00C1FF;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 15px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-secondary);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0, 193, 255, 0.15);
+            color: var(--accent-secondary);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: #e6204a;
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(255, 36, 72, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        .contact-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .contact-description {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20bd5a;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-email {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .btn-email:hover {
+            background: var(--bg-primary);
+            border-color: var(--accent-secondary);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        .footer strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .btn-whatsapp,
+            .btn-email {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">⚡</div>
+        <h1>Preemptive Movement Hub</h1>
+        <p class="subtitle">
+            Sistema integrado de análisis estratégico personal y empresarial.<br>
+            Detección temprana • Corrección preventiva • Fortalecimiento sistémico
+        </p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2 class="section-title">🎯 Herramientas de Análisis</h2>
+        
+        <div class="cards-grid">
+            <!-- Havana 50 Card -->
+            <div class="card">
+                <span class="card-badge">Diagnóstico Estratégico</span>
+                <span class="card-icon">⚙️</span>
+                <h3 class="card-title">Havana 50</h3>
+                <p class="card-description">
+                    Unidad de Inteligencia y Restauración. Detección de patrones críticos en sistemas biológicos y operativos mediante análisis de 256 registros.
+                </p>
+                <a href="La Habana 50.html" class="btn">Iniciar Análisis</a>
+            </div>
+
+            <!-- MPM APP Card -->
+            <div class="card">
+                <span class="card-badge">16 Módulos Vibracionais</span>
+                <span class="card-icon">🎨</span>
+                <h3 class="card-title">MPM - Manual Preemptive Movement</h3>
+                <p class="card-description">
+                    Sistema completo de decodificación personal y empresarial con 16 tests especializados: Colores, Ciudades, Profesiones, Arquetipos y más.
+                </p>
+                <a href="Aplicación MPM_V3.html" class="btn">Acceder a Tests</a>
+            </div>
+
+            <!-- Preemptive Movement Info Card -->
+            <div class="card">
+                <span class="card-badge">Información del Método</span>
+                <span class="card-icon">📋</span>
+                <h3 class="card-title">Sobre Preemptive Movement</h3>
+                <p class="card-description">
+                    Conoce los 13 servicios del método: desde auditoría de decisiones hasta preparación para longevidad activa. No es motivación, es estructura.
+                </p>
+                <a href="movimiento preventivo.html" class="btn btn-secondary">Ver Método Completo</a>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2 class="contact-title">¿Necesitas Análisis Profesional?</h2>
+            <p class="contact-description">
+                Para procesos profundos personales o empresariales, evaluaciones completas<br>
+                y acompañamiento estratégico personalizado
+            </p>
+            <div class="contact-buttons">
+                <a href="https://wa.me/34672680535?text=Hola,%20solicito%20información%20sobre%20Preemptive%20Movement" 
+                   class="btn-whatsapp" 
+                   target="_blank">
+                    📱 WhatsApp: 672 680 535
+                </a>
+                <a href="mailto:preemptivemovement@gmail.com" class="btn-email">
+                    ✉️ preemptivemovement@gmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <strong>Antonio Hernández Valdés</strong>
+        Preemptive Movement • Ingeniería de Supervivencia Estratégica<br>
+        Detección, Corrección y Fortalecimiento antes del fallo
+    </div>
+</body>
+</html>
